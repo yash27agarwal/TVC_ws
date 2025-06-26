@@ -1,2 +1,0 @@
-[0.042s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'extensions']
-[0.042s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='extensions', group_name=None, all=False, verbose=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x764ddb262440>, verb_extension=<colcon_devtools.verb.extensions.ExtensionsVerb object at 0x764ddb261ae0>, main=<bound method ExtensionsVerb.main of <colcon_devtools.verb.extensions.ExtensionsVerb object at 0x764ddb261ae0>>)

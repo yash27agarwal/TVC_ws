@@ -1,4 +1,0 @@
-Invoking command in '/home/yash/px4_ws/build/px4_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/yash/px4_ws/install/tvc_controller:/opt/ros/humble /opt/cmake-3.28.1/bin/cmake --build /home/yash/px4_ws/build/px4_msgs -- -j28 -l28
-Invoked command in '/home/yash/px4_ws/build/px4_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/yash/px4_ws/install/tvc_controller:/opt/ros/humble /opt/cmake-3.28.1/bin/cmake --build /home/yash/px4_ws/build/px4_msgs -- -j28 -l28
-Invoking command in '/home/yash/px4_ws/build/px4_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/yash/px4_ws/install/tvc_controller:/opt/ros/humble /opt/cmake-3.28.1/bin/cmake --install /home/yash/px4_ws/build/px4_msgs
-Invoked command in '/home/yash/px4_ws/build/px4_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/yash/px4_ws/install/tvc_controller:/opt/ros/humble /opt/cmake-3.28.1/bin/cmake --install /home/yash/px4_ws/build/px4_msgs

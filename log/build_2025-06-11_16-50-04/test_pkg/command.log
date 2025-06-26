@@ -1,6 +1,0 @@
-Invoking command in '/home/yash/px4_ws/build/test_pkg': CMAKE_PREFIX_PATH=/opt/ros/humble /opt/cmake-3.28.1/bin/cmake /home/yash/px4_ws/src/test_pkg -DCMAKE_INSTALL_PREFIX=/home/yash/px4_ws/install/test_pkg
-Invoked command in '/home/yash/px4_ws/build/test_pkg' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /opt/cmake-3.28.1/bin/cmake /home/yash/px4_ws/src/test_pkg -DCMAKE_INSTALL_PREFIX=/home/yash/px4_ws/install/test_pkg
-Invoking command in '/home/yash/px4_ws/build/test_pkg': CMAKE_PREFIX_PATH=/opt/ros/humble /opt/cmake-3.28.1/bin/cmake --build /home/yash/px4_ws/build/test_pkg -- -j28 -l28
-Invoked command in '/home/yash/px4_ws/build/test_pkg' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /opt/cmake-3.28.1/bin/cmake --build /home/yash/px4_ws/build/test_pkg -- -j28 -l28
-Invoking command in '/home/yash/px4_ws/build/test_pkg': CMAKE_PREFIX_PATH=/opt/ros/humble /opt/cmake-3.28.1/bin/cmake --install /home/yash/px4_ws/build/test_pkg
-Invoked command in '/home/yash/px4_ws/build/test_pkg' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /opt/cmake-3.28.1/bin/cmake --install /home/yash/px4_ws/build/test_pkg
