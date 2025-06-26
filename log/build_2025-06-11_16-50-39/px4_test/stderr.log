@@ -1,0 +1,4 @@
+[01m[K/home/yash/px4_ws/src/px4_test/src/px4_test_node.cpp:[m[K In member function ‘[01m[Kvoid OffboardControl::odom_callback(px4_msgs::msg::VehicleOdometry_<std::allocator<void> >::UniquePtr)[m[K’:
+[01m[K/home/yash/px4_ws/src/px4_test/src/px4_test_node.cpp:196:21:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Keuler_angles[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+  196 |     Eigen::Vector3d [01;35m[Keuler_angles[m[K = px4_ros_com::frame_transforms::utils::quaternion::quaternion_to_euler(q);
+      |                     [01;35m[K^~~~~~~~~~~~[m[K

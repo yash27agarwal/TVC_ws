@@ -1,0 +1,2 @@
+[console_scripts]
+lqr_px4_controller = tvc_controller.lqr_controller_node:main

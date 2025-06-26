@@ -1,0 +1,15 @@
+/home/yash/px4_ws/install/test_pkg/share/ament_index/resource_index/package_run_dependencies/test_pkg
+/home/yash/px4_ws/install/test_pkg/share/ament_index/resource_index/parent_prefix_path/test_pkg
+/home/yash/px4_ws/install/test_pkg/share/test_pkg/environment/ament_prefix_path.sh
+/home/yash/px4_ws/install/test_pkg/share/test_pkg/environment/ament_prefix_path.dsv
+/home/yash/px4_ws/install/test_pkg/share/test_pkg/environment/path.sh
+/home/yash/px4_ws/install/test_pkg/share/test_pkg/environment/path.dsv
+/home/yash/px4_ws/install/test_pkg/share/test_pkg/local_setup.bash
+/home/yash/px4_ws/install/test_pkg/share/test_pkg/local_setup.sh
+/home/yash/px4_ws/install/test_pkg/share/test_pkg/local_setup.zsh
+/home/yash/px4_ws/install/test_pkg/share/test_pkg/local_setup.dsv
+/home/yash/px4_ws/install/test_pkg/share/test_pkg/package.dsv
+/home/yash/px4_ws/install/test_pkg/share/ament_index/resource_index/packages/test_pkg
+/home/yash/px4_ws/install/test_pkg/share/test_pkg/cmake/test_pkgConfig.cmake
+/home/yash/px4_ws/install/test_pkg/share/test_pkg/cmake/test_pkgConfig-version.cmake
+/home/yash/px4_ws/install/test_pkg/share/test_pkg/package.xml

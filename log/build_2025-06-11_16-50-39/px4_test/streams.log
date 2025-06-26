@@ -1,0 +1,91 @@
+[0.005s] Invoking command in '/home/yash/px4_ws/build/px4_test': AMENT_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/yash/px4_ws/install/px4_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/yash/px4_ws/install/px4_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /opt/cmake-3.28.1/bin/cmake /home/yash/px4_ws/src/px4_test -DCMAKE_INSTALL_PREFIX=/home/yash/px4_ws/install/px4_test
+[0.032s] -- The C compiler identification is GNU 11.4.0
+[0.064s] -- The CXX compiler identification is GNU 11.4.0
+[0.074s] -- Detecting C compiler ABI info
+[0.102s] -- Detecting C compiler ABI info - done
+[0.108s] -- Check for working C compiler: /usr/lib/ccache/cc - skipped
+[0.108s] -- Detecting C compile features
+[0.108s] -- Detecting C compile features - done
+[0.114s] -- Detecting CXX compiler ABI info
+[0.145s] -- Detecting CXX compiler ABI info - done
+[0.150s] -- Check for working CXX compiler: /usr/lib/ccache/c++ - skipped
+[0.150s] -- Detecting CXX compile features
+[0.150s] -- Detecting CXX compile features - done
+[0.151s] -- Found ament_cmake: 1.3.11 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.240s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.280s] -- Found builtin_interfaces: 1.2.1 (/opt/ros/humble/share/builtin_interfaces/cmake)
+[0.300s] -- Found rosidl_generator_c: 3.1.6 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.302s] -- Found rosidl_adapter: 3.1.6 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.306s] -- Found rosidl_generator_cpp: 3.1.6 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.313s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.321s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.331s] -- Found eigen3_cmake_module: 0.1.1 (/opt/ros/humble/share/eigen3_cmake_module/cmake)
+[0.337s] -- Found Eigen3: TRUE (found version "3.4.0") 
+[0.338s] -- Found geometry_msgs: 4.8.0 (/opt/ros/humble/share/geometry_msgs/cmake)
+[0.359s] -- Found px4_msgs: 2.0.1 (/home/yash/px4_ws/install/px4_msgs/share/px4_msgs/cmake)
+[0.368s] -- Found rclcpp: 16.0.12 (/opt/ros/humble/share/rclcpp/cmake)
+[0.397s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.399s] -- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.454s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[0.471s] -- Found FastRTPS: /opt/ros/humble/include  
+[0.494s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.500s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.542s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[0.543s] -- Found Threads: TRUE  
+[0.573s] -- Found sensor_msgs: 4.8.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[0.622s] -- Configuring done (0.6s)
+[0.630s] -- Generating done (0.0s)
+[0.633s] -- Build files have been written to: /home/yash/px4_ws/build/px4_test
+[0.638s] Invoked command in '/home/yash/px4_ws/build/px4_test' returned '0': AMENT_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/yash/px4_ws/install/px4_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/yash/px4_ws/install/px4_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /opt/cmake-3.28.1/bin/cmake /home/yash/px4_ws/src/px4_test -DCMAKE_INSTALL_PREFIX=/home/yash/px4_ws/install/px4_test
+[0.639s] Invoking command in '/home/yash/px4_ws/build/px4_test': AMENT_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/yash/px4_ws/install/px4_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/yash/px4_ws/install/px4_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /opt/cmake-3.28.1/bin/cmake --build /home/yash/px4_ws/build/px4_test -- -j28 -l28
+[0.650s] [ 16%] [32mBuilding CXX object CMakeFiles/frame_transforms.dir/src/lib/frame_transforms.cpp.o[0m
+[0.709s] [ 33%] [32m[1mLinking CXX shared library libframe_transforms.so[0m
+[0.859s] [ 33%] Built target frame_transforms
+[0.864s] [ 66%] [32mBuilding CXX object CMakeFiles/px4_test.dir/src/px4_test_node.cpp.o[0m
+[0.864s] [ 66%] [32mBuilding CXX object CMakeFiles/gazebo_clock.dir/src/gazebo_clock.cpp.o[0m
+[4.639s] [ 83%] [32m[1mLinking CXX executable gazebo_clock[0m
+[4.818s] [ 83%] Built target gazebo_clock
+[6.862s] [01m[K/home/yash/px4_ws/src/px4_test/src/px4_test_node.cpp:[m[K In member function ‘[01m[Kvoid OffboardControl::odom_callback(px4_msgs::msg::VehicleOdometry_<std::allocator<void> >::UniquePtr)[m[K’:
+[6.862s] [01m[K/home/yash/px4_ws/src/px4_test/src/px4_test_node.cpp:196:21:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Keuler_angles[m[K’ set but not used [[01;35m[K-Wunused-but-set-variable[m[K]
+[6.862s]   196 |     Eigen::Vector3d [01;35m[Keuler_angles[m[K = px4_ros_com::frame_transforms::utils::quaternion::quaternion_to_euler(q);
+[6.862s]       |                     [01;35m[K^~~~~~~~~~~~[m[K
+[6.866s] [100%] [32m[1mLinking CXX executable px4_test[0m
+[7.153s] [100%] Built target px4_test
+[7.157s] Invoked command in '/home/yash/px4_ws/build/px4_test' returned '0': AMENT_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/yash/px4_ws/install/px4_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/yash/px4_ws/install/px4_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /opt/cmake-3.28.1/bin/cmake --build /home/yash/px4_ws/build/px4_test -- -j28 -l28
+[7.157s] Invoking command in '/home/yash/px4_ws/build/px4_test': AMENT_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/yash/px4_ws/install/px4_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/yash/px4_ws/install/px4_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /opt/cmake-3.28.1/bin/cmake --install /home/yash/px4_ws/build/px4_test
+[7.158s] -- Install configuration: ""
+[7.158s] -- Installing: /home/yash/px4_ws/install/px4_test/include
+[7.158s] -- Installing: /home/yash/px4_ws/install/px4_test/include/px4_test
+[7.158s] -- Installing: /home/yash/px4_ws/install/px4_test/include/px4_test/frame_transforms.h
+[7.158s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test//launch
+[7.158s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test//launch/px4_test_launch.py
+[7.158s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/config
+[7.158s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/config/px4.yaml
+[7.158s] -- Installing: /home/yash/px4_ws/install/px4_test/lib/libframe_transforms.so
+[7.162s] -- Set non-toolchain portion of runtime path of "/home/yash/px4_ws/install/px4_test/lib/libframe_transforms.so" to ""
+[7.162s] -- Installing: /home/yash/px4_ws/install/px4_test/lib/px4_test/px4_test
+[7.167s] -- Set non-toolchain portion of runtime path of "/home/yash/px4_ws/install/px4_test/lib/px4_test/px4_test" to ""
+[7.167s] -- Installing: /home/yash/px4_ws/install/px4_test/lib/px4_test/gazebo_clock
+[7.169s] -- Set non-toolchain portion of runtime path of "/home/yash/px4_ws/install/px4_test/lib/px4_test/gazebo_clock" to ""
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/environment/library_path.sh
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/environment/library_path.dsv
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/ament_index/resource_index/package_run_dependencies/px4_test
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/ament_index/resource_index/parent_prefix_path/px4_test
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/environment/ament_prefix_path.sh
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/environment/ament_prefix_path.dsv
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/environment/path.sh
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/environment/path.dsv
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/local_setup.bash
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/local_setup.sh
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/local_setup.zsh
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/local_setup.dsv
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/package.dsv
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/ament_index/resource_index/packages/px4_test
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/cmake/export_px4_testExport.cmake
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/cmake/export_px4_testExport-noconfig.cmake
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/cmake/ament_cmake_export_targets-extras.cmake
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/cmake/ament_cmake_export_dependencies-extras.cmake
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/cmake/px4_testConfig.cmake
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/cmake/px4_testConfig-version.cmake
+[7.169s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/package.xml
+[7.170s] Invoked command in '/home/yash/px4_ws/build/px4_test' returned '0': AMENT_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:/opt/ros/humble LD_LIBRARY_PATH=/home/yash/px4_ws/install/px4_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/yash/px4_ws/install/px4_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /opt/cmake-3.28.1/bin/cmake --install /home/yash/px4_ws/build/px4_test

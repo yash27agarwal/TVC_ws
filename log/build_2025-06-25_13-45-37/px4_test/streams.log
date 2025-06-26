@@ -1,0 +1,39 @@
+[0.007s] Invoking command in '/home/yash/px4_ws/build/px4_test': CMAKE_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:/home/yash/px4_ws/install/test_pkg:/home/yash/px4_ws/install/px4_test:/home/yash/px4_ws/install/px4_ros_com:/home/yash/px4_ws/install/tvc_controller:/opt/ros/humble LD_LIBRARY_PATH=/home/yash/px4_ws/install/px4_msgs/lib:/home/yash/px4_ws/install/px4_test/lib:/home/yash/px4_ws/install/px4_ros_com/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/yash/acados/lib:/usr/local/lib/coin-or /opt/cmake-3.28.1/bin/cmake --build /home/yash/px4_ws/build/px4_test -- -j28 -l28
+[0.022s] [ 33%] Built target frame_transforms
+[0.030s] [ 83%] Built target px4_test
+[0.030s] [100%] Built target gazebo_clock
+[0.100s] Invoked command in '/home/yash/px4_ws/build/px4_test' returned '0': CMAKE_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:/home/yash/px4_ws/install/test_pkg:/home/yash/px4_ws/install/px4_test:/home/yash/px4_ws/install/px4_ros_com:/home/yash/px4_ws/install/tvc_controller:/opt/ros/humble LD_LIBRARY_PATH=/home/yash/px4_ws/install/px4_msgs/lib:/home/yash/px4_ws/install/px4_test/lib:/home/yash/px4_ws/install/px4_ros_com/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/yash/acados/lib:/usr/local/lib/coin-or /opt/cmake-3.28.1/bin/cmake --build /home/yash/px4_ws/build/px4_test -- -j28 -l28
+[0.101s] Invoking command in '/home/yash/px4_ws/build/px4_test': CMAKE_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:/home/yash/px4_ws/install/test_pkg:/home/yash/px4_ws/install/px4_test:/home/yash/px4_ws/install/px4_ros_com:/home/yash/px4_ws/install/tvc_controller:/opt/ros/humble LD_LIBRARY_PATH=/home/yash/px4_ws/install/px4_msgs/lib:/home/yash/px4_ws/install/px4_test/lib:/home/yash/px4_ws/install/px4_ros_com/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/yash/acados/lib:/usr/local/lib/coin-or /opt/cmake-3.28.1/bin/cmake --install /home/yash/px4_ws/build/px4_test
+[0.102s] -- Install configuration: ""
+[0.102s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/include
+[0.103s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/include/px4_test
+[0.103s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/include/px4_test/frame_transforms.h
+[0.103s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test//launch
+[0.103s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test//launch/px4_test_launch.py
+[0.103s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/config
+[0.103s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/config/px4.yaml
+[0.103s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/lib/libframe_transforms.so
+[0.103s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/lib/px4_test/px4_test
+[0.103s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/lib/px4_test/gazebo_clock
+[0.103s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/environment/library_path.sh
+[0.103s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/environment/library_path.dsv
+[0.103s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/ament_index/resource_index/package_run_dependencies/px4_test
+[0.103s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/ament_index/resource_index/parent_prefix_path/px4_test
+[0.103s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/environment/ament_prefix_path.sh
+[0.103s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/environment/ament_prefix_path.dsv
+[0.103s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/environment/path.sh
+[0.104s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/environment/path.dsv
+[0.104s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/local_setup.bash
+[0.104s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/local_setup.sh
+[0.104s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/local_setup.zsh
+[0.104s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/local_setup.dsv
+[0.104s] -- Installing: /home/yash/px4_ws/install/px4_test/share/px4_test/package.dsv
+[0.104s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/ament_index/resource_index/packages/px4_test
+[0.104s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/cmake/export_px4_testExport.cmake
+[0.104s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/cmake/export_px4_testExport-noconfig.cmake
+[0.104s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/cmake/ament_cmake_export_targets-extras.cmake
+[0.104s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/cmake/ament_cmake_export_dependencies-extras.cmake
+[0.104s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/cmake/px4_testConfig.cmake
+[0.104s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/cmake/px4_testConfig-version.cmake
+[0.104s] -- Up-to-date: /home/yash/px4_ws/install/px4_test/share/px4_test/package.xml
+[0.105s] Invoked command in '/home/yash/px4_ws/build/px4_test' returned '0': CMAKE_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:/home/yash/px4_ws/install/test_pkg:/home/yash/px4_ws/install/px4_test:/home/yash/px4_ws/install/px4_ros_com:/home/yash/px4_ws/install/tvc_controller:/opt/ros/humble LD_LIBRARY_PATH=/home/yash/px4_ws/install/px4_msgs/lib:/home/yash/px4_ws/install/px4_test/lib:/home/yash/px4_ws/install/px4_ros_com/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/home/yash/acados/lib:/usr/local/lib/coin-or /opt/cmake-3.28.1/bin/cmake --install /home/yash/px4_ws/build/px4_test

@@ -1,0 +1,5 @@
+  File "/home/yash/px4_ws/install/tvc_controller/lib/python3.10/site-packages/tvc_controller/lqr_controller_node.py", line 366
+    if self.is_state_initialized and self.is_final_state_initialized and False
+                                                                              ^
+SyntaxError: expected ':'
+

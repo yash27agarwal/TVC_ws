@@ -1,0 +1,28 @@
+[0.318s] Invoking command in '/home/yash/px4_ws/src/tvc_controller': AMENT_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs LD_LIBRARY_PATH=/home/yash/px4_ws/install/px4_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/yash/px4_ws/build/tvc_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yash/px4_ws/install/tvc_controller/lib/python3.10/site-packages:/home/yash/px4_ws/install/px4_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/tvc_controller build --build-base /home/yash/px4_ws/build/tvc_controller/build install --record /home/yash/px4_ws/build/tvc_controller/install.log --single-version-externally-managed install_data
+[0.417s] running egg_info
+[0.422s] writing ../../build/tvc_controller/tvc_controller.egg-info/PKG-INFO
+[0.423s] writing dependency_links to ../../build/tvc_controller/tvc_controller.egg-info/dependency_links.txt
+[0.423s] writing entry points to ../../build/tvc_controller/tvc_controller.egg-info/entry_points.txt
+[0.423s] writing requirements to ../../build/tvc_controller/tvc_controller.egg-info/requires.txt
+[0.423s] writing top-level names to ../../build/tvc_controller/tvc_controller.egg-info/top_level.txt
+[0.434s] reading manifest file '../../build/tvc_controller/tvc_controller.egg-info/SOURCES.txt'
+[0.435s] writing manifest file '../../build/tvc_controller/tvc_controller.egg-info/SOURCES.txt'
+[0.435s] running build
+[0.435s] running build_py
+[0.435s] copying tvc_controller/simple_controller.py -> /home/yash/px4_ws/build/tvc_controller/build/lib/tvc_controller
+[0.435s] copying tvc_controller/lqr.py -> /home/yash/px4_ws/build/tvc_controller/build/lib/tvc_controller
+[0.435s] copying tvc_controller/lqr_controller_node.py -> /home/yash/px4_ws/build/tvc_controller/build/lib/tvc_controller
+[0.435s] copying tvc_controller/__init__.py -> /home/yash/px4_ws/build/tvc_controller/build/lib/tvc_controller
+[0.435s] running install
+[0.437s] running install_lib
+[0.443s] running install_data
+[0.443s] copying resource/tvc_controller -> /home/yash/px4_ws/install/tvc_controller/share/ament_index/resource_index/packages
+[0.443s] copying package.xml -> /home/yash/px4_ws/install/tvc_controller/share/tvc_controller
+[0.443s] copying launch/lqr.launch.py -> /home/yash/px4_ws/install/tvc_controller/share/tvc_controller/launch
+[0.443s] running install_egg_info
+[0.449s] removing '/home/yash/px4_ws/install/tvc_controller/lib/python3.10/site-packages/tvc_controller-0.0.0-py3.10.egg-info' (and everything under it)
+[0.449s] Copying ../../build/tvc_controller/tvc_controller.egg-info to /home/yash/px4_ws/install/tvc_controller/lib/python3.10/site-packages/tvc_controller-0.0.0-py3.10.egg-info
+[0.449s] running install_scripts
+[0.495s] Installing lqr_px4_controller script to /home/yash/px4_ws/install/tvc_controller/lib/tvc_controller
+[0.495s] writing list of installed files to '/home/yash/px4_ws/build/tvc_controller/install.log'
+[0.507s] Invoked command in '/home/yash/px4_ws/src/tvc_controller' returned '0': AMENT_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/yash/px4_ws/install/px4_msgs LD_LIBRARY_PATH=/home/yash/px4_ws/install/px4_msgs/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/yash/px4_ws/build/tvc_controller/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/yash/px4_ws/install/tvc_controller/lib/python3.10/site-packages:/home/yash/px4_ws/install/px4_msgs/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/tvc_controller build --build-base /home/yash/px4_ws/build/tvc_controller/build install --record /home/yash/px4_ws/build/tvc_controller/install.log --single-version-externally-managed install_data

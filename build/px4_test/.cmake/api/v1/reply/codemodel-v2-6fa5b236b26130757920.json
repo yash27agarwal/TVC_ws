@@ -1,0 +1,97 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-6e69295217559c52e544.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "px4_test",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "frame_transforms::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-frame_transforms-954e6bd37aafcf34f3eb.json",
+					"name" : "frame_transforms",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "gazebo_clock::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-gazebo_clock-94e0ed745959a597fb60.json",
+					"name" : "gazebo_clock",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "px4_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-px4_test-6d04319ef7d7efcfaaf3.json",
+					"name" : "px4_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "px4_test_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-px4_test_uninstall-6755e1d586db5b6b41f9.json",
+					"name" : "px4_test_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-6135b23bb7b600139e92.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/yash/px4_ws/build/px4_test",
+		"source" : "/home/yash/px4_ws/src/px4_test"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

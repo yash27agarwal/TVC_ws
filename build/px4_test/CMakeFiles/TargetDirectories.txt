@@ -1,0 +1,12 @@
+/home/yash/px4_ws/build/px4_test/CMakeFiles/uninstall.dir
+/home/yash/px4_ws/build/px4_test/CMakeFiles/px4_test_uninstall.dir
+/home/yash/px4_ws/build/px4_test/CMakeFiles/frame_transforms.dir
+/home/yash/px4_ws/build/px4_test/CMakeFiles/px4_test.dir
+/home/yash/px4_ws/build/px4_test/CMakeFiles/gazebo_clock.dir
+/home/yash/px4_ws/build/px4_test/CMakeFiles/test.dir
+/home/yash/px4_ws/build/px4_test/CMakeFiles/edit_cache.dir
+/home/yash/px4_ws/build/px4_test/CMakeFiles/rebuild_cache.dir
+/home/yash/px4_ws/build/px4_test/CMakeFiles/list_install_components.dir
+/home/yash/px4_ws/build/px4_test/CMakeFiles/install.dir
+/home/yash/px4_ws/build/px4_test/CMakeFiles/install/local.dir
+/home/yash/px4_ws/build/px4_test/CMakeFiles/install/strip.dir
