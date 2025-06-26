@@ -1,9 +1,0 @@
-/home/yash/px4_ws/build/test_pkg/CMakeFiles/uninstall.dir
-/home/yash/px4_ws/build/test_pkg/CMakeFiles/test_pkg_uninstall.dir
-/home/yash/px4_ws/build/test_pkg/CMakeFiles/test.dir
-/home/yash/px4_ws/build/test_pkg/CMakeFiles/edit_cache.dir
-/home/yash/px4_ws/build/test_pkg/CMakeFiles/rebuild_cache.dir
-/home/yash/px4_ws/build/test_pkg/CMakeFiles/list_install_components.dir
-/home/yash/px4_ws/build/test_pkg/CMakeFiles/install.dir
-/home/yash/px4_ws/build/test_pkg/CMakeFiles/install/local.dir
-/home/yash/px4_ws/build/test_pkg/CMakeFiles/install/strip.dir
