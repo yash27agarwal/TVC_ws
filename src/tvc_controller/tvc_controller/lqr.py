@@ -3,10 +3,10 @@ import scipy.linalg
 import matplotlib.pyplot as plt
 
 G = 9.81
-DIST_COM = -1.1087 
-I_XX = 0.001403
-I_YY = 0.111939 
-I_ZZ = 0.112119
+DIST_COM = 1.1087 
+I_XX = 0.111939
+I_YY = 0.112119
+I_ZZ = 0.001403
 MASS = 0.567    
 
 class LQRController:
@@ -47,9 +47,9 @@ class LQRController:
             [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],       # x_dot
             [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],       # y_dot
             [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],     # z_dot
-            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],       # vx_dot 
-            [0, 0, 0, 0, 0, 0, 0, 0, -2*G, 0, 0, 0],     # vy_dot
-            [0, 0, 0, 0, 0, 0, 0, 2*G, 0, 0, 0, 0],        # vz_dot
+            [0, 0, 0, 0, 0, 0, 0, 2*G, 0, 0, 0, 0],       # vx_dot 
+            [0, 0, 0, 0, 0, 0, -2*G, 0, 0, 0, 0, 0],     # vy_dot
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],        # vz_dot
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 1/2, 0, 0],      # qx_dot
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1/2, 0],     # qy_dot
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1/2],     # qz_dot
@@ -69,13 +69,16 @@ class LQRController:
             [0, 0, 0, 0],   # qx
             [0, 0, 0, 0],       # qy
             [0, 0, 0, 0],   # qz
-            [0, 0, 0, 1/I_XX],  # p
-            [0, 0, -DIST_COM/I_YY, 0],      # q
-            [0, DIST_COM/I_ZZ, 0, 0]        # r
+            [0, -DIST_COM/I_XX, 0, 0],  # p
+            [DIST_COM/I_YY, 0, 0, 0],      # q
+            [0, 0, 0, 1/I_ZZ]        # r
         ])
     
     def set_Q(self):
-        return np.diag([5, 1, 1, 1, 1, 1, 0.001, 50, 50, 0.001, 10, 10])
+        return np.diag([3, 3, 5, 
+                        1, 1, 1, 
+                        50, 50, 50, 
+                        10, 10, 0.0001])
     
     def set_R(self):
         return np.diag([1, 1, 1, 1])
@@ -463,8 +466,8 @@ def main():
     
     # Simple control test
     # [x, y, z, vx, vy, vz, qx, qy, qz, p, q, r]
-    X_i = np.array([2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0])  # Initial state
-    X_f = np.array([2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])  # Final state
+    X_i = np.array([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])  # Initial state
+    X_f = np.array([0, 0, -5, 0, 0, 0, 0, 0, 0, 0, 0, 0])  # Final state
     X = X_i - X_f  # State error
     U = -K @ X  # Control input
     print(f"\nControl Input U for X is: {U}")

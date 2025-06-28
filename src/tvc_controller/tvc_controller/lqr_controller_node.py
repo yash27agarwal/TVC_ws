@@ -9,10 +9,15 @@ from px4_msgs.msg import VehicleThrustSetpoint, VehicleTorqueSetpoint, ArmingChe
 import numpy as np
 from tvc_controller.lqr import LQRController 
 
+"""
+Coordinate Convention:
+- NED (North, East, Down) frame is used for position and velocity.
+- FRD (Forward, Right, Down) frame is used for angular velocity.
+"""
 
 # Desired states vector - target orientation is now always [0, 0, 0, 1]
 # [x, y, z, x_dot, y_dot, z_dot, q_x, q_y, q_z, q_w, p, q, r]
-X_F_TARGET = np.array([3.0, 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0.])
+X_F_TARGET = np.array([0., 0., -5., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0.])
 
 class PX4Controller(Node):
     
@@ -103,7 +108,7 @@ class PX4Controller(Node):
                  self.current_quaternion = current_q_ned
                  self._last_update_quaternion = np.copy(current_q_ned)
         
-        # Angular velocity in body frame
+        # Angular velocity in body frame (FRD)
         self.current_angular_velocity = np.array(msg.angular_velocity)
 
         if not self.is_state_initialized: 
@@ -116,7 +121,8 @@ class PX4Controller(Node):
             self.is_state_initialized = True
             self.get_logger().info("Vehicle state initialized from odometry.")
 
-        self._convert_NED_2_UNW()
+        # self._convert_NED_2_UNW()
+        self._pre_precess_date()
 
         # Collect measurements for averaging (first 100 readings)
         if self.state_callback_counter < 100:
@@ -129,68 +135,36 @@ class PX4Controller(Node):
         
         self.state_callback_counter += 1
 
-    def _convert_NED_2_UNW(self):
-        """Convert from NED to UNW coordinate frame"""
-        # 1. Convert Position (NED to UNW)
+    def _pre_precess_date(self):
+        """Pre-process data to convert from NED to UNW coordinate frame."""
         if self.current_position is not None:
-            ned_pos = np.copy(self.current_position)
-            self.current_position[0] = -ned_pos[2]   # UNW_U = -NED_D
-            self.current_position[1] =  ned_pos[0]   # UNW_N =  NED_N
-            self.current_position[2] = -ned_pos[1]   # UNW_W = -NED_E
+            # self.get_logger().info(f"Current position (NED frame): {self.current_position}")
             self._last_update_position = self.current_position.copy()
-            self.get_logger().info(f"Current position (UNW frame): {self.current_position}")
 
-        # 2. Convert Velocity (NED to UNW)
         if self.current_velocity is not None:
-            ned_vel = np.copy(self.current_velocity)
-            self.current_velocity[0] = -ned_vel[2]   # UNW_vU = -NED_vD
-            self.current_velocity[1] =  ned_vel[0]   # UNW_vN =  NED_vN
-            self.current_velocity[2] = -ned_vel[1]   # UNW_vW = -NED_vE
+            # self.get_logger().info(f"Current velocity (NED frame): {self.current_velocity}")
             self._last_update_velocity = self.current_velocity.copy()
-            self.get_logger().info(f"Current velocity (UNW frame): {self.current_velocity}")
 
-        # 3. Convert Orientation Quaternion (Body to NED -> Body to UNW)
         if self.current_quaternion is not None:
-            # self.get_logger().info(f"Current quaternion (NED frame): {self.current_quaternion}", throttle_duration_sec=0.5)
-            q_body_to_ned_xyzw = self.current_quaternion
-            r_body_to_ned = R.from_quat(q_body_to_ned_xyzw)
-
-            R_ned_to_unw_matrix = np.array([
-                [0,  1, 0],
-                [0,  0,  -1],
-                [-1, 0,  0]
-            ])
-            r_ned_to_unw = R.from_matrix(R_ned_to_unw_matrix)
-            r_body_to_unw = r_ned_to_unw * r_body_to_ned
+            # self.get_logger().info(f"Current quaternion (NED frame): {self.current_quaternion}")
             
-            # Convert to UNW frame quaternion
-            q_body_to_unw = r_body_to_unw.as_quat()
-            # self.get_logger().info(f"Current quaternion (UNW frame): {q_body_to_unw}", throttle_duration_sec=0.5)
-            # NEW: Apply orientation normalization if initialized
             if self.is_orientation_normalized:
                 # Apply the fixed rotation to normalize orientation
-                r_current = R.from_quat(q_body_to_unw)
+                r_current = R.from_quat(self.current_quaternion)
                 r_normalized = R.from_matrix(self.initial_rotation_matrix) * r_current
                 self.current_quaternion = r_normalized.as_quat()
-                self.get_logger().info(f"Normalized quaternion (UNW frame): {self.current_quaternion}")
+                # self.get_logger().info(f"Normalized quaternion (NED frame): {self.current_quaternion}")
                 
                 # Ensure the scalar part is positive
                 if self.current_quaternion[3] < 0:
                     self.get_logger().warn("Quaternion scalar part is negative!, switching signs.")
                     self.current_quaternion = -self.current_quaternion
-            else:
-                self.current_quaternion = q_body_to_unw
-                
-            self._last_update_quaternion = np.copy(self.current_quaternion)
 
-        # 4. Angular Velocity (remains in body frame, converted to UNW)
+            self._last_update_quaternion = self.current_quaternion.copy()
+
         if self.current_angular_velocity is not None:
-            self.ang_vel_ned = np.copy(self.current_angular_velocity)
-            self.current_angular_velocity[0] = -self.ang_vel_ned[2]  # UNW_wU = -NED_wD
-            self.current_angular_velocity[1] =  self.ang_vel_ned[0]  # UNW_wN =  NED_wN
-            self.current_angular_velocity[2] = -self.ang_vel_ned[1]  # UNW_wW = -NED_wE
-            self._last_update_angular_velocity = np.copy(self.current_angular_velocity)
-            self.get_logger().info(f"Current angular velocity (UNW frame): {self.current_angular_velocity}")
+            # self.get_logger().info(f"Current angular velocity (NED frame): {self.current_angular_velocity}")
+            self._last_update_angular_velocity = self.current_angular_velocity.copy()
 
     def _initialize_orientation_normalization(self, avg_quaternion):
         """Initialize the fixed rotation matrix for orientation normalization."""
@@ -308,7 +282,6 @@ class PX4Controller(Node):
         msg = VehicleThrustSetpoint()
         msg.timestamp = int(self.get_clock().now().nanoseconds / 1000)
         msg.xyz = [thrust_sp[0], thrust_sp[1], thrust_sp[2]]  # Thrust in body frame [N]
-        self.get_logger().info("__________________________________________________________\n")
         self.thrust_setpoint_publisher.publish(msg)
     
     def publish_torque_setpoint(self, torque_sp_roll = 0):
@@ -368,11 +341,13 @@ class PX4Controller(Node):
         if self.offboard_setpoint_counter < 5000:
             self.offboard_setpoint_counter += 1
 
+    
     def control_timer(self):
         self.publish_offboard_control_heartbeat_signal()
 
         # (TODO):Add a check for armed and in offboard mode
         if self.is_state_initialized and self.is_final_state_initialized:
+            
             # Calculate state error
             pos_error = self._last_update_position - self.position_target
             vel_error = self._last_update_velocity - self.velocity_target
@@ -392,19 +367,41 @@ class PX4Controller(Node):
             thrust_sp = u_lqr[0:3]
             torque_sp = float(u_lqr[3])
 
-            thrust_sp[0] += 0.567 * 9.81  # Add hover thrust in the x-direction
+            # Add hover thrust in the z-direction (NED frame) 
+            thrust_sp[2] -= 0.567 * 9.81  
             
             self.get_logger().info(f'Control Output: {u_lqr}')
 
-            if np.linalg.norm(thrust_sp) > 9.81 * 1.4:
-                self.get_logger().warn(f'Thrust setpoint exceeds limit: {np.linalg.norm(thrust_sp)} N')
+            max_thrust = 9.81 * 1.4  # Maximum thrust limit in N
+            if np.linalg.norm(thrust_sp) > max_thrust:
+                self.get_logger().warn(f'Thrust setpoint 0 exceeds max limit: {np.linalg.norm(thrust_sp)} N')
                 thrust_sp_dir = thrust_sp / np.linalg.norm(thrust_sp)\
                       if np.linalg.norm(thrust_sp) > 0 else np.zeros(3)
-                thrust_sp = thrust_sp_dir * 9.81 * 1.4
+                thrust_sp = thrust_sp_dir * max_thrust
 
-            if thrust_sp[0] < 9.81 * 0.3:
-                self.get_logger().warn(f'Thrust setpoint x-component is negative: {thrust_sp[0]} N, setting to {9.81 * 0.3} N')
-                thrust_sp[0] = 9.81 * 0.3  # Set minimum thrust in x-direction
+            # if thrust_sp[0] < -max_thrust*np.sin(30 * np.pi / 180):
+            #     self.get_logger().warn(f'Thrust setpoint 0 in x-axis is negative: {thrust_sp[0]} N, setting to 0')
+            #     thrust_sp[0] = -max_thrust * np.sin(30 * np.pi / 180)
+            
+            # if thrust_sp[0] > max_thrust * np.sin(30 * np.pi / 180):
+            #     self.get_logger().warn(f'Thrust setpoint 1 in x-axis is exceeds max limit: {thrust_sp[0]} N')
+            #     thrust_sp[0] = max_thrust * np.sin(30 * np.pi / 180)
+
+            # if thrust_sp[1] < -max_thrust*np.sin(30 * np.pi / 180):
+            #     self.get_logger().warn(f'Thrust setpoint in x-axis is negative: {thrust_sp[1]} N, setting to 0')
+            #     thrust_sp[1] = -max_thrust * np.sin(30 * np.pi / 180)
+            
+            # if thrust_sp[1] > max_thrust * np.sin(30 * np.pi / 180):
+            #     self.get_logger().warn(f'Thrust setpoint in x-axis is positive: {thrust_sp[1]} N, setting to 0')
+            #     thrust_sp[1] = max_thrust * np.sin(30 * np.pi / 180)
+
+            
+            if thrust_sp[2] > 0 :
+                self.get_logger().warn(f'Thrust setpoint in axis is negative: {thrust_sp[2]} N, setting to 0')
+                thrust_sp[2] = 0.0
+                # thrust_sp_dir = thrust_sp / np.linalg.norm(thrust_sp)\
+                #       if np.linalg.norm(thrust_sp) > 0 else np.zeros(3)
+                # thrust_sp = thrust_sp_dir * 9.81 * 0.6
 
             # Publish thrust and torque setpoints
             self.publish_thrust_setpoint(thrust_sp)
