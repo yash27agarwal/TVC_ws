@@ -13,8 +13,11 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         # Include launch files
-        (os.path.join('share', package_name, 'launch'), 
-         glob(os.path.join('launch', '*launch.[pxy][yma]*'))),
+        (os.path.join('share', package_name, 'launch'),
+            glob(os.path.join('launch', '*launch.[pxy][yma]*'))),
+        # Include config files - ADD THIS LINE
+        (os.path.join('share', package_name, 'config'), 
+            glob(os.path.join('config', '*.yaml'))),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -22,7 +25,6 @@ setup(
     maintainer_email='your.email@example.com',
     description='LQR Controller for PX4',
     license='MIT',
-    # Remove this line: tests_require=['pytest'],
     entry_points={
         'console_scripts': [
             'lqr_px4_controller = tvc_controller.lqr_controller_node:main',
