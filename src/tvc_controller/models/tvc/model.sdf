@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-<sdf version="1.9">
+<sdf version="1.11">
   <model name="TVC">
-
+  <!-- <pose> 2 0 0 0 0 -1.57</pose> -->
     <link name="base_link">
-      <pose>0 0 1.0 0 0 0</pose>
+      <pose>0 0 0.7725 0 0 0</pose>
       <inertial>
-        <mass>0.51</mass>
+        <mass>0.6</mass>
         <pose>0 0 0 0 0 0</pose>
         <inertia>
           <ixx>0.042</ixx>
@@ -21,7 +21,7 @@
         <geometry>
           <cylinder>
             <radius>0.052</radius>
-            <length>2.0</length>
+            <length>1.0</length>
           </cylinder>
         </geometry>
         <material>
@@ -43,7 +43,7 @@
       <sensor name="imu_sensor" type="imu">
         <always_on>1</always_on>
         <update_rate>250</update_rate>
-        <pose>0 0 0.1 0 0 -1.5708</pose>
+        <pose>0 0 0 0 0 0</pose>
         <visualize>1</visualize>
         <imu>
           <angular_velocity>
@@ -122,7 +122,7 @@
     </link>
 
     <link name="top_cone">
-      <pose>0 0 2.05 0 0 0</pose>
+      <pose>0 0 1.3225 0 0 0</pose>
       <inertial>
         <mass>0.01</mass>
         <inertia>
@@ -159,7 +159,7 @@
     </link>
 
     <link name="gimbal_mount">
-      <pose>0 0 -0.065 0 0 0</pose>
+      <pose>0 0 0.2525 0 0 0</pose>
       <inertial>
         <mass>0.005</mass>
         <inertia>
@@ -193,8 +193,8 @@
       </collision>
     </link>
 
-    <link name="servo2_yaw">
-      <pose>0 0 -0.105 0 0 0</pose>
+    <link name="servo0_roll">
+      <pose>0 0 0.1675 0 0 0</pose>
       <inertial>
         <mass>0.003</mass>
         <inertia>
@@ -207,12 +207,11 @@
         </inertia>
       </inertial>
 
-      <visual name="servo2_yaw_visual">
+      <visual name="servo0_roll_visual">
         <geometry>
-          <cylinder>
-            <radius>0.04</radius>
-            <length>0.03</length>
-          </cylinder>
+          <box>
+            <size>0.02 0.06 0.03</size>
+          </box>
         </geometry>
         <material>
           <ambient>0.8 0.2 0.2 1</ambient>
@@ -220,18 +219,17 @@
         </material>
       </visual>
 
-      <collision name="servo2_yaw_collision">
+      <collision name="servo0_roll_collision">
         <geometry>
-          <cylinder>
-            <radius>0.04</radius>
-            <length>0.03</length>
-          </cylinder>
+          <box>
+            <size>0.02 0.06 0.03</size>
+          </box>
         </geometry>
       </collision>
     </link>
 
     <link name="servo1_pitch">
-      <pose>0 0 -0.135 0 0 0</pose>
+      <pose>0 0 0.1675 0 0 0</pose>
       <inertial>
         <mass>0.003</mass>
         <inertia>
@@ -247,7 +245,7 @@
       <visual name="servo1_pitch_visual">
         <geometry>
           <box>
-            <size>0.06 0.02 0.06</size>
+            <size>0.06 0.02 0.03</size>
           </box>
         </geometry>
         <material>
@@ -259,14 +257,14 @@
       <collision name="servo1_pitch_collision">
         <geometry>
           <box>
-            <size>0.06 0.02 0.06</size>
+            <size>0.06 0.02 0.03</size>
           </box>
         </geometry>
       </collision>
     </link>
 
     <link name="motor_housing">
-      <pose>0 0 -0.185 0 0 0</pose>
+      <pose>0 0 0.1675 0 0 0</pose>
       <inertial>
         <mass>0.01</mass>
         <inertia>
@@ -282,8 +280,8 @@
       <visual name="motor_housing_visual">
         <geometry>
           <cylinder>
-            <radius>0.025</radius>
-            <length>0.08</length>
+            <radius>0.008</radius>
+            <length>0.04</length>
           </cylinder>
         </geometry>
         <material>
@@ -295,15 +293,15 @@
       <collision name="motor_housing_collision">
         <geometry>
           <cylinder>
-            <radius>0.025</radius>
-            <length>0.08</length>
+            <radius>0.008</radius>
+            <length>0.04</length>
           </cylinder>
         </geometry>
       </collision>
     </link>
 
     <link name="prop_upper">
-      <pose>0 0 -0.145 0 0 0</pose>
+      <pose>0 0 0.1875 0 0 0</pose>
       <inertial>
         <mass>0.001</mass>
         <inertia>
@@ -338,7 +336,7 @@
     </link>
 
     <link name="prop_lower">
-      <pose>0 0 -0.225 0 0 0</pose>
+      <pose>0 0 0.1475 0 0 0</pose>
       <inertial>
         <mass>0.001</mass>
         <inertia>
@@ -373,7 +371,7 @@
     </link>
 
     <link name="landing_leg_1">
-      <pose>0.18 0 -0.1216 0 -0.78539816339 0</pose>
+      <pose>0.18 0 0.1509 0 -0.78539816339 0</pose>
       <inertial>
         <mass>0.005</mass>
         <inertia>
@@ -405,7 +403,7 @@
     </link>
 
     <link name="landing_leg_2">
-      <pose>0 0.18 -0.1216 0.78539816339 0 0</pose>
+      <pose>0 0.18 0.1509 0.78539816339 0 0</pose>
       <inertial>
         <mass>0.005</mass>
         <inertia>
@@ -437,7 +435,7 @@
     </link>
 
     <link name="landing_leg_3">
-      <pose>-0.18 0 -0.1216 0 0.78539816339 0</pose>
+      <pose>-0.18 0 0.1509 0 0.78539816339 0</pose>
       <inertial>
         <mass>0.005</mass>
         <inertia>
@@ -454,8 +452,8 @@
           </cylinder>
         </geometry>
         <material>
-          <ambient>0.2 0.2 0.2 1</ambient>
-          <diffuse>0.4 0.4 0.4 1</diffuse>
+          <ambient>0.2 0 0 1</ambient>
+          <diffuse>0.8 0 0 1</diffuse>
         </material>
       </visual>
       <collision name="leg_3_collision">
@@ -469,7 +467,7 @@
     </link>
 
     <link name="landing_leg_4">
-      <pose>0 -0.18 -0.1216 -0.78539816339 0 0</pose>
+      <pose>0 -0.18 0.1509 -0.78539816339 0 0</pose>
       <inertial>
         <mass>0.005</mass>
         <inertia>
@@ -502,7 +500,7 @@
 
     <!-- Landing leg bases -->
     <link name="landing_base_1">
-      <pose>0.315 0 -0.265 0 0 0</pose>
+      <pose>0.315 0 0.0075 0 0 0</pose>
       <inertial>
         <mass>0.001</mass>
         <inertia>
@@ -534,7 +532,7 @@
     </link>
 
     <link name="landing_base_2">
-      <pose>0 0.315 -0.265 0 0 0</pose>
+      <pose>0 0.315 0.0075 0 0 0</pose>
       <inertial>
         <mass>0.001</mass>
         <inertia>
@@ -566,7 +564,7 @@
     </link>
 
     <link name="landing_base_3">
-      <pose>-0.315 0 -0.265 0 0 0</pose>
+      <pose>-0.315 0 0.0075 0 0 0</pose>
       <inertial>
         <mass>0.001</mass>
         <inertia>
@@ -598,7 +596,7 @@
     </link>
 
     <link name="landing_base_4">
-      <pose>0 -0.315 -0.265 0 0 0</pose>
+      <pose>0 -0.315 0.0075 0 0 0</pose>
       <inertial>
         <mass>0.001</mass>
         <inertia>
@@ -674,39 +672,45 @@
       <child>landing_base_4</child>
     </joint>
 
-    <joint name="servo2_yaw_joint" type="revolute">
+    <joint name="servo0_roll_joint" type="revolute">
       <parent>gimbal_mount</parent>
-      <child>servo2_yaw</child>
+      <child>servo0_roll</child>
+      <!-- <pose>0 0 0.1675 0 0 0</pose> -->
       <axis>
-        <xyz>0 1 0</xyz>
+        <xyz>
+        1 0 0
+        </xyz>
         <limit>
-          <lower>-0.5</lower>
-          <upper>0.5</upper>
-          <effort>1.0</effort>
-          <velocity>10.0</velocity>
+          <lower>-1</lower>
+          <upper>1</upper>
+          <!-- <effort>1.0</effort>
+          <velocity>10.0</velocity> -->
         </limit>
-        <dynamics>
-          <damping>0.01</damping>
+        <!-- <dynamics>
+          <damping>0.09</damping>
           <friction>0.001</friction>
-        </dynamics>
+        </dynamics> -->
       </axis>
     </joint>
 
     <joint name="servo1_pitch_joint" type="revolute">
-      <parent>servo2_yaw</parent>
+      <parent>servo0_roll</parent>
       <child>servo1_pitch</child>
+      <!-- <pose>0 0 0.1675 0 0 0</pose> -->
       <axis>
-        <xyz>1 0 0</xyz>
+        <xyz>
+        0 -1 0
+        </xyz>
         <limit>
-          <lower>-0.5</lower>
-          <upper>0.5</upper>
-          <effort>1.0</effort>
-          <velocity>10.0</velocity>
+          <lower>-1</lower>
+          <upper>1</upper>
+          <!-- <effort>1.0</effort>
+          <velocity>10.0</velocity> -->
         </limit>
-        <dynamics>
-          <damping>0.01</damping>
+        <!-- <dynamics>
+          <damping>0.09</damping>
           <friction>0.001</friction>
-        </dynamics>
+        </dynamics> -->
       </axis>
     </joint>
 
@@ -721,10 +725,10 @@
       <axis>
         <xyz>0 0 1</xyz>
         <limit>
-          <lower>-1e16</lower>
-          <upper>1e16</upper>
-          <effort>1.0</effort>
-          <velocity>4000.0</velocity>
+          <!-- <lower>-1e16</lower>
+          <upper>1e16</upper> -->
+          <!-- <effort>1.0</effort> -->
+          <!-- <velocity>4000.0</velocity> -->
         </limit>
         <dynamics>
           <damping>0.001</damping>
@@ -739,10 +743,10 @@
       <axis>
         <xyz>0 0 1</xyz>
         <limit>
-          <lower>-1e16</lower>
-          <upper>1e16</upper>
-          <effort>1.0</effort>
-          <velocity>4000.0</velocity>
+          <!-- <lower>-1e16</lower>
+          <upper>1e16</upper> -->
+          <!-- <effort>1.0</effort> -->
+          <!-- <velocity>4000.0</velocity> -->
         </limit>
         <dynamics>
           <damping>0.001</damping>
@@ -760,12 +764,12 @@
       <timeConstantDown>0.025</timeConstantDown>
       <maxRotVelocity>1400</maxRotVelocity>
       <motorConstant>0.0000048449</motorConstant>
-      <momentConstant>0.001</momentConstant>
+      <momentConstant>0.1</momentConstant>
       <commandSubTopic>command/motor_speed</commandSubTopic>
       <motorNumber>0</motorNumber>
-      <rotorDragCoefficient>0.000806428</rotorDragCoefficient>
+      <rotorDragCoefficient>0.0000000806428</rotorDragCoefficient>
       <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
-      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
     </plugin>
 
@@ -778,26 +782,26 @@
       <timeConstantDown>0.025</timeConstantDown>
       <maxRotVelocity>1400</maxRotVelocity>
       <motorConstant>0.0000048449</motorConstant>
-      <momentConstant>0.001</momentConstant>
+      <momentConstant>0.1</momentConstant>
       <commandSubTopic>command/motor_speed</commandSubTopic>
       <motorNumber>1</motorNumber>
-      <rotorDragCoefficient>0.000806428</rotorDragCoefficient>
+      <rotorDragCoefficient>0.0000000806428</rotorDragCoefficient>
       <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
-      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
     </plugin>
 
     <plugin filename="gz-sim-joint-position-controller-system"
             name="gz::sim::systems::JointPositionController">
       <joint_name>servo1_pitch_joint</joint_name>
-      <sub_topic>servo_0</sub_topic>
+      <sub_topic>servo_1</sub_topic>
       <p_gain>1</p_gain>
       </plugin>
 
     <plugin filename="gz-sim-joint-position-controller-system"
             name="gz::sim::systems::JointPositionController">
-      <joint_name>servo2_yaw_joint</joint_name>
-      <sub_topic>servo_1</sub_topic>
+      <joint_name>servo0_roll_joint</joint_name>
+      <sub_topic>servo_0</sub_topic>
       <p_gain>1</p_gain>
       </plugin>
 
