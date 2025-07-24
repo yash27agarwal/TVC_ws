@@ -1,0 +1,134 @@
+/**:
+  ros__parameters:
+    # =====================================
+    # TVC PLATFORM PHYSICAL PROPERTIES
+    # =====================================
+    # Coordinate Convention:
+    # - NED (North, East, Down) frame is used for position and velocity.
+    # - FRD (Forward, Right, Down) frame is used for angular velocity.
+    physical:
+      # Gravitational acceleration (m/s^2)
+      G: 9.81
+      
+      # Distance from center of mass (m) to center of thrust in z direction in FRD frame
+      # Here, the assumption is that center of mass and center of thrust are aligned in the z direction.
+      DIST_COM_2_THRUST: 0.5693
+      
+      # Moments of inertia (kg*m^2)
+      I_XX: 0.062796
+      I_YY: 0.062976
+      I_ZZ: 0.001403
+      
+      # Total mass (kg)
+      MASS: 0.6570
+    
+    # =====================================
+    # LQR CONTROLLER WEIGHTS
+    # =====================================
+    lqr:
+      # State weight matrix Q (diagonal elements)
+      # Order: [x, y, z, x_dot, y_dot, z_dot, q_x, q_y, q_z, p, q, r]
+      ## Note: q_w is not included in the state vector, as after linearization it is not needed.
+      ## The quaternion is assumed to be unit length, so only three components are needed.
+      ## Including q_w would make the linearized system uncontrollable. 
+      Q_diagonal:
+        - 1.0    # x position
+        - 1.0    # y position
+        - 1.0    # z position
+        - 1.0    # x velocity
+        - 1.0    # y velocity
+        - 1.0    # z velocity
+        - 1.0    # quaternion x
+        - 1.0    # quaternion y
+        - 0.1    # quaternion z
+        - 1.0    # angular velocity p
+        - 1.0    # angular velocity q
+        - 0.01   # angular velocity r
+      
+      # Control weight matrix R (diagonal elements)
+      # Order: [servo_0, servo_1, main_thrust, torque_z]
+      ## Note: Servo 0 and servo 1 are the control inputs for the two servos.
+      ## servo 0 is mounted on x axis in FRD frame in body frame.
+      ## servo 1 is mounted on y axis in FRD frame in body frame.
+      R_diagonal:
+        - 10.0   # servo 0
+        - 10.0   # servo 1
+        - 1.0    # main thrust
+        - 10.0   # torque z
+    
+    # =====================================
+    # TARGET POSITION AND ORIENTATION
+    # =====================================
+    target:
+      # Target state vector [x, y, z, x_dot, y_dot, z_dot, q_x, q_y, q_z, q_w, p, q, r]
+      # Position target is incremental from current position.
+      position:
+        x: 5.0       # target x position (m)
+        y: 0.0       # target y position (m)
+        z: -5.0      # target z position (m)
+      
+      ## Note: Don't change velocity, orientation and angular velocity values.
+      ## Otherwise LQR controller will not work as expected and TVC will crash.
+      ## LQR has been linearized around these values, which is hovering condition.
+      velocity:
+        x_dot: 0.0   # target x velocity (m/s)
+        y_dot: 0.0   # target y velocity (m/s)
+        z_dot: 0.0   # target z velocity (m/s)
+      
+      orientation:
+        q_x: 0.0     # target quaternion x
+        q_y: 0.0     # target quaternion y
+        q_z: 0.0     # target quaternion z
+        q_w: 1.0     # target quaternion w
+      
+      angular_velocity:
+        p: 0.0       # target angular velocity p (rad/s)
+        q: 0.0       # target angular velocity q (rad/s)
+        r: 0.0       # target angular velocity r (rad/s)
+
+    # =====================================
+    # ACTUATOR CONSTRAINTS
+    # =====================================
+    actuator_constraints:
+      # Servo angle limits (radians)
+      servo_0:
+        min: -0.25  # minimum phi angle (rad)
+        max: 0.25   # maximum phi angle (rad)
+      servo_1:
+        min: -0.25  # minimum theta angle (rad)
+        max: 0.25   # maximum theta angle (rad)
+      
+      # Thrust limits (relative to weight compensation) defined in FRD frame
+      thrust:
+        # Minimum thrust as multiplier of gravitational acceleration
+        min_g_multiplier: -1.5  # allows -1.5*G thrust
+        # Maximum thrust as fraction of weight compensation
+        max_weight_fraction: -0.5  # allows up to -0.5 * MASS * G thrust below weight compensation
+      
+      # Torque limits (Nm)
+      torque_z:
+        min: -0.5  # minimum torque around z-axis (Nm)
+        max: 0.5   # maximum torque around z-axis (Nm)
+
+    # =====================================
+    # CONTROL ALLOCATION PARAMETERS
+    # =====================================
+    control_allocation:
+      # use control allocation on onboard computer in ROS2
+      # If true, the control allocation will run on onboard computer and directly control the motors.
+      # If false, the control allocation will run on FCU running PX4.
+      use_in_onboard_computer: false
+      # thrust and moment coefficients
+      thrust_coefficients:
+        ct_0: 0.0000048449  # thrust coefficient for motor 0
+        ct_1: 0.0000048449  # thrust coefficient for motor 1
+      moment_coefficients:
+        cm_0: 0.1           # moment coefficient for motor 0
+        cm_1: 0.1           # moment coefficient for motor 1
+      # polynomial coefficients for PWM conversion
+      pwm_conversion:
+        p1: 3.1352e-4       # coefficient for motor speeds squared
+        p2: 0.1352          # coefficient for motor speeds
+        p3: 996.9672        # constant term for PWM conversion
+  
+
