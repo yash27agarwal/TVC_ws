@@ -303,7 +303,6 @@ class TVC_CONTROLLER(Node):
         self.use_onboard_control_allocation = self.get_parameter('control_allocation.use_in_onboard_computer').get_parameter_value().bool_value
 
         if self.use_onboard_control_allocation:
-            self.get_logger().info("Using onboard control allocation.")        
             # Thrust coefficients
             self.declare_parameter('control_allocation.thrust_coefficients.ct_0', 0.0000048449)
             self.declare_parameter('control_allocation.thrust_coefficients.ct_1', 0.0000048449)
@@ -331,8 +330,7 @@ class TVC_CONTROLLER(Node):
             self.pwm_p3 = self.get_parameter('control_allocation.pwm_conversion.p3').get_parameter_value().double_value
         
             # Create control allocation matrices using loaded parameters
-            self.create_control_allocation_matrices()
-        
+            self.create_control_allocation_matrices()      
 
     def log_parameters(self) -> None:
         """
@@ -841,7 +839,10 @@ class TVC_CONTROLLER(Node):
         if pwm_commands is None:
             # Default to zero if no commands provided
             pwm_commands = np.zeros((2, 1))
-            
+        
+        # Ensure commands are in [0, 1] range
+        pwm_commands = np.clip(pwm_commands, 0.0, 1.0)  
+
         motor_data = ActuatorMotors()
         motor_data.timestamp = int(self.get_clock().now().nanoseconds / 1000)
         motor_data.control = [pwm_commands[0][0], pwm_commands[1][0], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
@@ -1014,12 +1015,12 @@ class TVC_CONTROLLER(Node):
             pwm_commands_normalized = np.array([[np.NaN], [np.NaN]])
         else:
             motor_speeds = np.sqrt(motor_speeds_square)
-            self.get_logger().info(f'Motor speeds: {motor_speeds}')
+            
             # Calculate PWM commands using the polynomial coefficients
             # PWM = p1* motor_speeds^2 + p2 * motor_speeds + p3
             pwm_commands = self.pwm_p1 * motor_speeds**2 +\
                             self.pwm_p2 * motor_speeds +\
-                                  self.pwm_p3
+                            self.pwm_p3
 
             # Clip PWM commands to valid range
             pwm_commands = np.clip(pwm_commands, 1100, 1900)

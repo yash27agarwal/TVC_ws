@@ -117,7 +117,7 @@
       # use control allocation on onboard computer in ROS2
       # If true, the control allocation will run on onboard computer and directly control the motors.
       # If false, the control allocation will run on FCU running PX4.
-      use_in_onboard_computer: false
+      use_in_onboard_computer: true
       # thrust and moment coefficients
       thrust_coefficients:
         ct_0: 0.0000048449  # thrust coefficient for motor 0
