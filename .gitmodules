@@ -6,3 +6,6 @@
 	path = src/px4_msgs
 	url = https://github.com/PX4/px4_msgs.git
 	branch = release/1.15
+[submodule "PX4_tvc"]
+	path = PX4_tvc
+	url = https://github.com/yash27agarwal/PX4_TVC.git
