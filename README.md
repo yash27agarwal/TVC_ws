@@ -63,9 +63,9 @@ px4_ws/
 ```bash
 git clone --recursive https://github.com/yash27agarwal/TVC_ws.git
 
-# OR
-git clone https://github.com/yash27agarwal/TVC_ws.git
-git submodule update --init --recursive
+# Alternatively, clone and then initialize
+# git clone https://github.com/yash27agarwal/TVC_ws.git
+# git submodule update --init --recursive
 
 # Install ROS 2 dependencies
 rosdep install --from-paths src --ignore-src -r -y
@@ -84,9 +84,8 @@ cd PX4_tvc
 make px4_sitl_default
 
 # Try to run it
-PX4_tvc/SYS_AUTOSTART=6002  ./build/px4_sitl_default/bin/px4
-
 # This command to successfully open GZ simualator with TVC platform at (0,0,0) coordinates 
+PX4_tvc/SYS_AUTOSTART=6002  ./build/px4_sitl_default/bin/px4
 ```
 
 ### 3. Connect to PX4
@@ -107,8 +106,10 @@ ros2 run ros_gz_bridge parameter_bridge /clock@rosgraph_msgs/msg/Clock[gz.msgs.C
 ### 5. Run the ROS2 Code
 ```bash
 # Open a new terminal
-# Build the ROS2 workspace
+# if you are in PX4_tvc, navigate back to tvc_ws
 cd ..
+
+# Build the ROS2 workspace
 colcon build
 
 # Source the setup file
@@ -142,7 +143,7 @@ This implementation uses standard aerospace coordinate conventions:
 
 ### LQR Controller (`lqr.py`)
 - **State space model**: 12-state system (position, velocity, orientation, angular rates)
-- **Control inputs**: 4 inputs (thrust + 3 torque components)
+- **Control inputs**: 4 inputs (servo 0, servo 1, total thrust, differential torques)
 - **Optimal control**: Minimizes quadratic cost function
 - **Physical parameters**: Mass, inertia, geometric properties
 
@@ -163,23 +164,6 @@ This implementation uses standard aerospace coordinate conventions:
 The TVC controller is configured through the `src/tvc_controller/config/tvc_params.yaml` file, which contains all the physical, control, and operational parameters for the thrust vector control system.
 
 >**Note:** Make sure to match the physical properties to tvc sdf model.
-
-
-### Tuning Guidelines
-
-1. **For better position tracking**: Increase position weights in Q_diagonal
-2. **For smoother control**: Increase R_diagonal values
-3. **For faster response**: Decrease R_diagonal values (with caution)
-4. **Safety margins**: Always maintain conservative actuator constraints
-
-### Configuration Best Practices
-
-- Always validate physical parameters against actual vehicle measurements
-- Test changes incrementally in simulation before hardware deployment
-- Monitor control saturation through logging
-- Backup working configurations before modifications
-
-
 
 ## 🚁 Modified PX4 (`PX4_tvc/`)
 
