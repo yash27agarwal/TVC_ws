@@ -3,7 +3,6 @@
 [![ROS 2](https://img.shields.io/badge/ROS-2-blue)](https://docs.ros.org/en/humble/index.html)
 [![PX4](https://img.shields.io/badge/PX4-Compatible-green)](https://px4.io/)
 [![Gazebo](https://img.shields.io/badge/Gazebo-Harmonic-orange)](https://gazebosim.org/)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 
 This ROS 2 workspace provides a complete thrust vector control (TVC) implementation for inverted coaxial drones with PX4 autopilot integration. The workspace includes a modified PX4 autopilot, ROS 2 communication bridges, message definitions, and a custom LQR controller for precise thrust vector control of coaxial motor systems with gimbal-based thrust vectoring.
 
