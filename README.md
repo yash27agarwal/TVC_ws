@@ -2,26 +2,42 @@
 
 [![ROS 2](https://img.shields.io/badge/ROS-2-blue)](https://docs.ros.org/en/humble/index.html)
 [![PX4](https://img.shields.io/badge/PX4-Compatible-green)](https://px4.io/)
+[![Gazebo](https://img.shields.io/badge/Gazebo-Harmonic-orange)](https://gazebosim.org/)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 
-This ROS 2 workspace provides a complete thrust vector control (TVC) implementation for PX4-based vehicles. The workspace includes PX4-ROS 2 communication bridges, message definitions, and an LQR (Linear Quadratic Regulator) controller for precise thrust vector control.
+This ROS 2 workspace provides a complete thrust vector control (TVC) implementation for inverted coaxial drones with PX4 autopilot integration. The workspace includes a modified PX4 autopilot, ROS 2 communication bridges, message definitions, and a custom LQR controller for precise thrust vector control of coaxial motor systems with gimbal-based thrust vectoring.
 
 ## 🏗️ Workspace Structure
 
 ```
 px4_ws/
-├── README.md              # This file
-├── run.sh                 # Automated build and launch script
+├── README.md                    # This documentation
+├── run.sh                       # Automated build and launch script
+├── PX4_tvc/                     # Modified PX4 autopilot for TVC
+│   ├── src/                     # PX4 source code
+│   ├── msg/                     # PX4 message definitions
+│   ├── launch/                  # PX4 launch configurations
+│   ├── boards/                  # Hardware board configurations
+│   └── ...                      # Standard PX4 structure
 └── src/
-    ├── px4_msgs/          # PX4 message definitions for ROS 2
-    ├── px4_ros_com/       # PX4-ROS 2 communication bridge
-    └── tvc_controller/    # Main TVC controller package
-        ├── config/        # Configuration files
-        ├── launch/        # Launch files
-        ├── models/        # Vehicle/system models
+    ├── px4_msgs/                # PX4 message definitions for ROS 2
+    ├── px4_ros_com/             # PX4-ROS 2 communication bridge
+    └── tvc_controller/          # Main TVC controller package
+        ├── config/
+        │   └── tvc_params.yaml          # Controller parameters
+        ├── launch/
+        │   └── lqr.launch.py            # ROS 2 launch file
+        ├── models/
+        │   └── tvc/                     # Gazebo TVC drone model
+        │       ├── model.sdf            # SDF model definition
+        │       ├── model.config         # Model configuration
+        │       └── meshes/              # 3D mesh files
+        ├── shell_scripts/
+        │   └── run.sh                   # Additional run scripts
+        ├── test/                        # Unit tests
         └── tvc_controller/
-            ├── lqr.py                    # LQR controller implementation
-            └── lqr_controller_node.py    # Main controller ROS 2 node
+            ├── lqr.py                   # LQR controller implementation
+            └── lqr_controller_node.py   # Main controller ROS 2 node
 ```
 
 ## 📋 Prerequisites
@@ -45,28 +61,54 @@ px4_ws/
 
 ### 1. Clone and Setup
 ```bash
-# Navigate to your workspace
-cd ~/px4_ws
+git clone --recursive https://github.com/yash27agarwal/TVC_ws.git
+
+# OR
+git clone https://github.com/yash27agarwal/TVC_ws.git
+git submodule update --init --recursive
 
 # Install ROS 2 dependencies
 rosdep install --from-paths src --ignore-src -r -y
 
 # Install Python dependencies
 pip3 install numpy scipy
+
+# Copy TVC model file from src/tvc_controller/models/tvc to PX4_tvc/Tools/simulation/gz/models/
+cp -r ./src/tvc_controller/models/tvc ./PX4_tvc/Tools/simulation/gz/models/
 ```
 
-### 2. Build the Workspace
+### 2. Build the PX4 Workspace
+First step is to build PX4.
 ```bash
-# Make the run script executable
-chmod +x run.sh
+cd PX4_tvc
+make px4_sitl_default
 
-# Build and launch (automated)
-./run.sh
+# Try to run it
+PX4_tvc/SYS_AUTOSTART=6002  ./build/px4_sitl_default/bin/px4
+
+# This command to successfully open GZ simualator with TVC platform at (0,0,0) coordinates 
 ```
 
-Or manually:
+### 3. Connect to PX4
+Ensure PX4 is running with the uXRCE-DDS bridge:
 ```bash
-# Build the workspace
+# For SITL
+# Open a new terminal
+MicroXRCEAgent udp4 -p 8888
+```
+
+### 4. Bind ROS2 clock to GZ
+```bash
+# Bind ROS2 and GZ clock
+# Open a new terminal
+ros2 run ros_gz_bridge parameter_bridge /clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock
+```
+
+### 5. Run the ROS2 Code
+```bash
+# Open a new terminal
+# Build the ROS2 workspace
+cd ..
 colcon build
 
 # Source the setup file
@@ -75,20 +117,6 @@ source install/setup.bash
 # Launch the TVC controller
 ros2 launch tvc_controller lqr.launch.py
 ```
-
-### 3. Connect to PX4
-Ensure PX4 is running with the uXRCE-DDS bridge:
-```bash
-# For SITL
-MicroXRCEAgent udp4 -p 8888
-```
-
-### 4. Bind ROS2 clock to GZ
-```bash
-# Bind ROS2 and GZ clock
-ros2 run ros_gz_bridge parameter_bridge /clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock
-
-``` 
 
 ## 🎮 Usage
 
@@ -99,32 +127,81 @@ The main controller node (`lqr_controller_node.py`) provides:
 - **Thrust vectoring**: Precise control of thrust magnitude and direction
 - **Attitude control**: 6-DOF attitude and position control
 
-### Topics and Services
-The controller subscribes to:
-- `/fmu/out/vehicle_odometry` - Vehicle position and velocity
-- `/fmu/out/vehicle_attitude` - Vehicle attitude
-- `/fmu/out/vehicle_status` - Vehicle status
-
-The controller publishes to:
-- `/fmu/in/offboard_control_mode` - Offboard control mode
-- `/fmu/in/vehicle_command` - Vehicle commands
-- `/fmu/in/vehicle_thrust_setpoint` - Thrust commands
-- `/fmu/in/vehicle_torque_setpoint` - Torque commands
-
-
+### Key Features
+- **Inverted coaxial design**: Specialized for inverted coaxial drones
+- **Gazebo simulation**: Complete TVC drone model with meshes
+- **YAML configuration**: Configurable physical and control parameters
+- **Real-time control**: Low-latency communication with PX4
 
 ## 📊 Coordinate Frames
 This implementation uses standard aerospace coordinate conventions:
 - **NED Frame**: North-East-Down for position and linear velocity
 - **FRD Frame**: Forward-Right-Down for angular rates and body frame
 
+## 🛠️ TVC Controller Components
+
+### LQR Controller (`lqr.py`)
+- **State space model**: 12-state system (position, velocity, orientation, angular rates)
+- **Control inputs**: 4 inputs (thrust + 3 torque components)
+- **Optimal control**: Minimizes quadratic cost function
+- **Physical parameters**: Mass, inertia, geometric properties
+
+### Controller Node (`lqr_controller_node.py`)
+- **ROS 2 integration**: Publisher/subscriber architecture
+- **PX4 communication**: uXRCE-DDS bridge compatibility
+- **Parameter management**: YAML-based configuration
+- **Safety features**: Timeout handling and error checking
+
+### Gazebo Model (`models/tvc/`)
+- **Complete TVC drone**: SDF model with inertial properties
+- **Coaxial propellers**: CW/CCW propeller meshes
+- **Sensor integration**: IMU and other sensors
+- **Visual representation**: 3D meshes and materials
+
+## ⚙️ Configuration
+
+The TVC controller is configured through the `src/tvc_controller/config/tvc_params.yaml` file, which contains all the physical, control, and operational parameters for the thrust vector control system.
+
+>**Note:** Make sure to match the physical properties to tvc sdf model.
+
+
+### Tuning Guidelines
+
+1. **For better position tracking**: Increase position weights in Q_diagonal
+2. **For smoother control**: Increase R_diagonal values
+3. **For faster response**: Decrease R_diagonal values (with caution)
+4. **Safety margins**: Always maintain conservative actuator constraints
+
+### Configuration Best Practices
+
+- Always validate physical parameters against actual vehicle measurements
+- Test changes incrementally in simulation before hardware deployment
+- Monitor control saturation through logging
+- Backup working configurations before modifications
+
+
+
+## 🚁 Modified PX4 (`PX4_tvc/`)
+
+This workspace includes a specialized PX4 fork with modifications for TVC systems:
+
+### Key Modifications
+- **Inverted coaxial airframe**: Custom airframe configuration
+- **Enhanced ESC interface**: Improved Gazebo simulation
+- **Gimbal integration**: Servo control for thrust vectoring
+- **Control allocation**: Specialized mixer for coaxial motors
+
+### ⚠️ Important Notes
+- **Incompatible with standard PX4**: This modified version is specifically for TVC applications
+- **Git tag checks disabled**: For development convenience
+- **Custom airframes only**: Only works with inverted coaxial configurations
+
+>**Note:** For more information refer `./PX4_tvc/README.md`
 
 ## 📚 Additional Resources
 
 - [PX4 Documentation](https://docs.px4.io/)
 - [ROS 2 Documentation](https://docs.ros.org/en/humble/)
-- [uXRCE-DDS Guide](https://docs.px4.io/main/en/middleware/uxrce_dds.html)
-- [PX4-ROS 2 Interface](https://docs.px4.io/main/en/ros/ros2_comm.html)
 
 ---
 
