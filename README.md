@@ -93,7 +93,7 @@ pip install numpy==1.16.0 scipy==1.15.0
 
 # Verify installation
 python -c "import numpy, scipy; print(f'numpy: {numpy.__version__}, scipy: {scipy.__version__}')"
-
+```
 
 ## 🚀 Quick Start
 
