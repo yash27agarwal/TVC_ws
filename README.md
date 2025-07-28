@@ -32,7 +32,7 @@ px4_ws/
         │       ├── model.config         # Model configuration
         │       └── meshes/              # 3D mesh files
         ├── shell_scripts/
-        │   └── run.sh                   # Additional run scripts
+        │   └── run.sh                   # Automated test script using tmux (has bugs)
         ├── test/                        # Unit tests
         └── tvc_controller/
             ├── lqr.py                   # LQR controller implementation
@@ -44,7 +44,7 @@ px4_ws/
 ### System Requirements
 - **OS**: Ubuntu 22.04 LTS (recommended) or Ubuntu 24.04 LTS
 - **ROS 2**: Humble Hawksbill (recommended) or Galactic Geochelone
-- **Python**: 3.10+
+- **Python**: 3.10.12 (recommended)
 - **PX4**: v1.15.4 (SITL or hardware)
 - **GZ**: Harmonic (recommended) or Ionic
 
@@ -52,9 +52,8 @@ px4_ws/
 - ROS 2 (with `colcon` build tools)
 - PX4 Autopilot with uXRCE-DDS bridge
 - Python packages:
-  - `numpy`
-  - `scipy`
-  - `rclpy`
+  - `numpy 1.16.0`
+  - `scipy 1.15.0`
 
 ## 💿 Installation
 ### 1. ROS2 Humble
@@ -82,6 +81,14 @@ sudo snap install plotjuggler
 plotjuggler
 ```
 
+### 5. Python Packages
+```bash
+# Install packages
+pip install numpy==1.16.0 scipy==1.15.0
+
+# Verify installation
+python -c "import numpy, scipy; print(f'numpy: {numpy.__version__}, scipy: {scipy.__version__}')"
+
 
 ## 🚀 Quick Start
 
@@ -96,10 +103,8 @@ git clone --recursive https://github.com/yash27agarwal/TVC_ws.git
 cd TVC_ws
 
 # Install ROS 2 dependencies
+rosdep update
 rosdep install --from-paths src --ignore-src -r -y
-
-# Install Python dependencies
-pip3 install numpy scipy
 
 # Copy TVC model file from src/tvc_controller/models/tvc to PX4_tvc/Tools/simulation/gz/models/
 cp -r ./src/tvc_controller/models/tvc ./PX4_tvc/Tools/simulation/gz/models/
