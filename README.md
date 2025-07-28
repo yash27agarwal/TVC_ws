@@ -12,7 +12,7 @@ This ROS 2 workspace provides a complete thrust vector control (TVC) implementat
 ## 🏗️ Workspace Structure
 
 ```
-px4_ws/
+TVC_ws/
 ├── README.md                    # This documentation
 ├── assets/                      # Media files and documentation assets
 │   ├── test_1.gif              # TVC demonstration video 1
