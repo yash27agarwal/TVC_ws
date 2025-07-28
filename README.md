@@ -12,7 +12,6 @@ This ROS 2 workspace provides a complete thrust vector control (TVC) implementat
 ```
 px4_ws/
 ├── README.md                    # This documentation
-├── run.sh                       # Automated build and launch script
 ├── PX4_tvc/                     # Modified PX4 autopilot for TVC
 │   ├── src/                     # PX4 source code
 │   ├── msg/                     # PX4 message definitions
@@ -57,15 +56,15 @@ px4_ws/
   - `scipy`
   - `rclpy`
 
-## Installation
+## 💿 Installation
 ### 1. ROS2 Humble
 Install ROS2 Humble following official [documentation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html).
 
 ### 2. GZ Harmonic 
 
-Install GZ Harmonic using official [documentation](https://gazebosim.org/docs/harmonic/install_ubuntu/)/
+Install GZ Harmonic using official [documentation](https://gazebosim.org/docs/harmonic/install_ubuntu/).
 
-Install GZ ROS2 bridge
+Install GZ ROS2 bridge using following commamnd.
 ```bash
 sudo apt install ros-humble-ros-gzharmonic
 ```
@@ -74,7 +73,7 @@ sudo apt install ros-humble-ros-gzharmonic
 Communication protocol used between PX4 and ROS2. It can be installed as stated in [PX4 documentation](https://docs.px4.io/main/en/middleware/uxrce_dds.html#install-standalone-from-source).
 
 ### 4. Plotjuggler
-For debugging data. [Plotjuggler](https://github.com/facontidavide/PlotJuggler) for ROS2  can be installed from snap store using the following commands.
+For debugging data install [plotjuggler](https://github.com/facontidavide/PlotJuggler) for ROS2  can be installed from snap store using the following commands.
 ```bash
 # installation
 sudo snap install plotjuggler
@@ -82,8 +81,6 @@ sudo snap install plotjuggler
 # to launch just run the following command
 plotjuggler
 ```
-
-
 
 
 ## 🚀 Quick Start
@@ -189,6 +186,13 @@ This implementation uses standard aerospace coordinate conventions:
 - **Coaxial propellers**: CW/CCW propeller meshes
 - **Sensor integration**: IMU and other sensors
 - **Visual representation**: 3D meshes and materials
+
+## 🐛 Debugging
+For debugging the data plotjuggler is highly recommended. Use the following command to run plotjuggler.
+```bash
+plotjuggler
+```
+In plotjuggler, import the ulog file from PX4 build. In v1.15.4 ulog files are stored in `<PX4>/build/px4_sitl_default/rootfs/log`. Then navigate to your required ulog file and import it to visulaize data. 
 
 ## ⚙️ Configuration
 
