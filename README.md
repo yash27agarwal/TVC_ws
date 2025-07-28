@@ -57,6 +57,35 @@ px4_ws/
   - `scipy`
   - `rclpy`
 
+## Installation
+### 1. ROS2 Humble
+Install ROS2 Humble following official [documentation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html).
+
+### 2. GZ Harmonic 
+
+Install GZ Harmonic using official [documentation](https://gazebosim.org/docs/harmonic/install_ubuntu/)/
+
+Install GZ ROS2 bridge
+```bash
+sudo apt install ros-humble-ros-gzharmonic
+```
+
+### 3. MicroDDS(uXRCE-DDS) 
+Communication protocol used between PX4 and ROS2. It can be installed as stated in [PX4 documentation](https://docs.px4.io/main/en/middleware/uxrce_dds.html#install-standalone-from-source).
+
+### 4. Plotjuggler
+For debugging data. [Plotjuggler](https://github.com/facontidavide/PlotJuggler) for ROS2  can be installed from snap store using the following commands.
+```bash
+# installation
+sudo snap install plotjuggler
+
+# to launch just run the following command
+plotjuggler
+```
+
+
+
+
 ## 🚀 Quick Start
 
 ### 1. Clone and Setup
@@ -66,6 +95,8 @@ git clone --recursive https://github.com/yash27agarwal/TVC_ws.git
 # Alternatively, clone and then initialize
 # git clone https://github.com/yash27agarwal/TVC_ws.git
 # git submodule update --init --recursive
+
+cd TVC_ws
 
 # Install ROS 2 dependencies
 rosdep install --from-paths src --ignore-src -r -y
@@ -85,7 +116,7 @@ make px4_sitl_default
 
 # Try to run it
 # This command to successfully open GZ simualator with TVC platform at (0,0,0) coordinates 
-PX4_tvc/SYS_AUTOSTART=6002  ./build/px4_sitl_default/bin/px4
+PX4_SYS_AUTOSTART=6002  ./build/px4_sitl_default/bin/px4
 ```
 
 ### 3. Connect to PX4
@@ -96,9 +127,9 @@ Ensure PX4 is running with the uXRCE-DDS bridge:
 MicroXRCEAgent udp4 -p 8888
 ```
 
-### 4. Bind ROS2 clock to GZ
+### 4. Bind GZ clock to ROS2
 ```bash
-# Bind ROS2 and GZ clock
+# Bind GZ clock to ros2
 # Open a new terminal
 ros2 run ros_gz_bridge parameter_bridge /clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock
 ```
@@ -106,7 +137,7 @@ ros2 run ros_gz_bridge parameter_bridge /clock@rosgraph_msgs/msg/Clock[gz.msgs.C
 ### 5. Run the ROS2 Code
 ```bash
 # Open a new terminal
-# if you are in PX4_tvc, navigate back to tvc_ws
+# if you are in PX4_tvc, navigate back to TVC_ws
 cd ..
 
 # Build the ROS2 workspace
